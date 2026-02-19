@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opener</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 40px;
+            font-size: 26px;
+        }
+
+        .button {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            margin: 15px 0;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            color: black;
+            background: #00ff88;
+            border-radius: 12px;
+            transition: 0.2s ease;
+        }
+
+        .button:hover {
+            background: #00cc6a;
+        }
+
+        .footer {
+            margin-top: 40px;
+            font-size: 12px;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>App Launcher</h1>
+
+        <a class="button" onclick="openApp('https://dzsozineni.github.io/limer-web/')">
+            Limer Web
+        </a>
+
+        <a class="button" onclick="openApp('https://dzsozineni.github.io/at-limer/')">
+            AT-Limer
+        </a>
+
+        <div class="footer">
+            iOS esetén csak a Bluefy bőngésző működik 
+        </div>
+    </div>
+
+<script>
+function openApp(url) {
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+
+    if (isIOS) {
+        // Megpróbálja Bluefy-ben megnyitni
+        window.location.href = "bluefy://" + url.replace("https://", "");
+        
+        // Ha nem sikerül, fallback normál megnyitásra
+        setTimeout(() => {
+            window.location.href = url;
+        }, 1500);
+    } else {
+        window.location.href = url;
+    }
+}
+</script>
+
+</body>
+</html>
